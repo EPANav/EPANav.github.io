@@ -207,10 +207,10 @@
   <header>
     <div class="container">
       <div class="hero">
-        <h1 class="title">TODO: 论文标题 / Project Title</h1>
-        <p class="subtitle">
+        <h1 class="title">EPANav: An Exploration-Progress-Aware Object Navigation Framework</h1>
+        <!-- <p class="subtitle">
           TODO: 作者（按论文格式） · TODO: 机构 · TODO: 会议/期刊与年份
-        </p>
+        </p> -->
 
         <div class="meta" aria-label="Quick links">
           <span class="pill"><span class="dot"></span> Project Page</span>
@@ -239,8 +239,7 @@
       <section id="abstract">
         <h2>Abstract</h2>
         <p class="abstract">
-          TODO: 在这里填写摘要。建议 150–250 字，突出问题、方法、关键贡献与结果（定量/定性）。
-          例如：我们提出一种……，在……基准上提升……，并在真实机器人平台上验证了……。
+          Object Navigation requires an embodied agent to locate a target object specified by its category. Existing systems often remain inefficient and brittle due to their inability to accurately estimate the spatial probability distribution of the target object's presence. In this paper, we propose EPANav, an exploration-progress-aware Object Navigation framework that addresses this challenge by leveraging the complementary strengths of scene graph and grid map. EPANav explicitly couples semantic priors from the scene graph with exploration progress from the grid map to dynamically balance semantic guidance and information gathering. This approach reduces redundant revisits while avoiding the premature dismissal of under-explored areas. Additionally, EPANav learns environment-specific object co-occurrence statistics online from the scene graph and integrates them with large language model (LLM) priors, mitigating domain mismatch and improving robustness. Experimental results on MP3D and HM3D demonstrate consistent improvements over prior training-free baselines, while real-world trials further validate the practical effectiveness of the proposed approach.
         </p>
       </section>
 
@@ -252,7 +251,7 @@
             <!-- 建议 mp4 + webm 双格式，兼容性更好 -->
             <video controls preload="metadata" poster="assets/poster_main.jpg">
               <source src="assets/main_video.mp4" type="video/mp4" />
-              <source src="assets/main_video.webm" type="video/webm" />
+              <!-- <source src="assets/main_video.webm" type="video/webm" /> -->
               您的浏览器不支持 video 标签。请下载观看：assets/main_video.mp4
             </video>
             <figcaption>
