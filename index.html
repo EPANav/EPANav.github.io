@@ -122,7 +122,7 @@
       font-size: 15.5px;
     }
 
-    .muted{ color: var(--muted); }
+    .muted{ color: rgba(17,24,39,.62); }
 
     .grid{
       display:grid;
@@ -147,11 +147,12 @@
 
     figure{ margin: 0; }
     figcaption{
-      padding: 10px 12px 12px;
-      font-size: 13px;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: rgba(255,255,255,.75);
+      padding: 12px 14px 14px;
+      font-size: 14.5px;          /* 字体更大 */
+      line-height: 1.55;
+      color: rgba(17,24,39,.88);  /* 更深的正文色（接近 text） */
+      border-top: 1px solid rgba(17,24,39,.10);
+      background: rgba(249,250,251,.92); /* 更“论文风”的浅灰底 */
     }
 
     video, img{
@@ -238,7 +239,6 @@
           <figure>
             <img src="assets/poster.jpg" alt="Real-world searching process visualization" loading="lazy" style="width: 50%; height: auto; display: block; margin: 0 auto;">
             <figcaption>
-              <strong>Process visualization:</strong>
               <span class="muted">Guided by exploration progress, our policy dynamically trades off information gain and semantic priors, reducing redundant exploration and improving ObjectNav efficiency.</span>
             </figcaption>
           </figure>
