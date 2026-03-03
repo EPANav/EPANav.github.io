@@ -1,16 +1,376 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>EPANav</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TODO: 项目标题 | Project Page</title>
+  <meta name="description" content="TODO: 文章项目主页（标题、摘要、视频与图示）" />
+
+  <style>
+    :root{
+      --bg: #fbfbfd;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: rgba(17,24,39,.10);
+      --shadow: 0 8px 30px rgba(17,24,39,.06);
+      --accent: #1f6feb;
+      --accent2: #0ea5e9;
+      --radius: 16px;
+      --maxw: 980px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+              "Apple Color Emoji","Segoe UI Emoji";
+      --serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(31,111,235,.12), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(14,165,233,.10), transparent 55%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a{color: var(--accent); text-decoration: none}
+    a:hover{text-decoration: underline}
+
+    header{
+      padding: 56px 20px 20px;
+    }
+
+    .container{
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.92));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 28px 26px;
+      backdrop-filter: blur(8px);
+    }
+
+    .title{
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 40px);
+      letter-spacing: .2px;
+      line-height: 1.18;
+    }
+
+    .subtitle{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .meta{
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      align-items: center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.75);
+      color: #0f172a;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(31,111,235,.12);
+    }
+
+    main{
+      padding: 18px 20px 64px;
+    }
+
+    section{
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 20px 20px 18px;
+    }
+
+    section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .abstract{
+      color: #111827;
+      font-size: 15.5px;
+    }
+
+    .muted{ color: var(--muted); }
+
+    .grid{
+      display:grid;
+      gap: 14px;
+    }
+
+    @media (min-width: 860px){
+      .grid-2{ grid-template-columns: 1fr 1fr; }
+      .grid-3{ grid-template-columns: repeat(3, 25%); }
+    }
+
+    .media-card{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(249,250,251,.6);
+    }
+
+    .media-inner{
+      padding: 12px 12px 10px;
+    }
+
+    figure{ margin: 0; }
+    figcaption{
+      padding: 10px 12px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      background: rgba(255,255,255,.75);
+    }
+
+    video, img{
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #0b1220;
+    }
+
+    .small-note{
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .credit{
+      font-family: var(--mono);
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    footer{
+      padding: 18px 20px 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footline{
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kbd{
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-bottom-color: rgba(17,24,39,.20);
+      border-radius: 8px;
+      background: rgba(255,255,255,.8);
+    }
+  </style>
 </head>
+
 <body>
-    <div class="grid-3">
-        <img src="image1.jpg" alt="Image 1">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
+  <header>
+    <div class="container">
+      <div class="hero">
+        <h1 class="title">EPANav: An Exploration-Progress-Aware Object Navigation Framework</h1>
+        <!-- <p class="subtitle">
+          TODO: 作者（按论文格式） · TODO: 机构 · TODO: 会议/期刊与年份
+        </p> -->
+
+        <div class="meta" aria-label="Quick links">
+          <span class="pill"><span class="dot"></span> Project Page</span>
+          <a class="pill" href="TODO: 论文链接" target="_blank" rel="noreferrer">
+            <span class="dot"></span> Paper
+          </a>
+          <a class="pill" href="TODO: 代码链接" target="_blank" rel="noreferrer">
+            <span class="dot"></span> Code
+          </a>
+          <a class="pill" href="TODO: 数据/模型链接" target="_blank" rel="noreferrer">
+            <span class="dot"></span> Data/Model
+          </a>
+        </div>
+
+        <p class="small-note">
+          <span class="kbd">提示</span> 将媒体资源放在 <span class="kbd">assets/</span> 目录下，并在下方替换路径即可。
+        </p>
+      </div>
     </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- 2. 摘要 -->
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="abstract">
+          Object Navigation requires an embodied agent to locate a target object specified by its category. Existing systems often remain inefficient and brittle due to their inability to accurately estimate the spatial probability distribution of the target object's presence. In this paper, we propose EPANav, an exploration-progress-aware Object Navigation framework that addresses this challenge by leveraging the complementary strengths of scene graph and grid map. EPANav explicitly couples semantic priors from the scene graph with exploration progress from the grid map to dynamically balance semantic guidance and information gathering. This approach reduces redundant revisits while avoiding the premature dismissal of under-explored areas. Additionally, EPANav learns environment-specific object co-occurrence statistics online from the scene graph and integrates them with large language model (LLM) priors, mitigating domain mismatch and improving robustness. Experimental results on MP3D and HM3D demonstrate consistent improvements over prior training-free baselines, while real-world trials further validate the practical effectiveness of the proposed approach.
+        </p>
+      </section>
+
+      <!-- 3. 主视频 + 署名 -->
+      <section id="main-video">
+        <h2>Video</h2>
+        <div class="media-card">
+          <figure>
+            <!-- 建议 mp4 + webm 双格式，兼容性更好 -->
+            <video controls preload="metadata" poster="assets/poster_main.jpg">
+              <source src="assets/miros_final.mp4" type="video/mp4" />
+              <!-- <source src="assets/main_video.webm" type="video/webm" /> -->
+              您的浏览器不支持 video 标签。请下载观看：assets/main_video.mp4
+            </video>
+            <figcaption>
+              <div><strong>Attribution / Credit:</strong> <span class="credit">TODO: 主视频署名（拍摄者/团队/机构/素材来源与许可）</span></div>
+              <div class="muted">TODO: 可补充说明：拍摄设备、场景、数据许可等。</div>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 4. 两个小的实机视频 -->
+      <section id="real-world-videos">
+        <h2>Real-World Demos</h2>
+        <div class="grid grid-2">
+          <div class="media-card">
+            <figure>
+              <video controls preload="metadata" poster="assets/poster_demo1.jpg">
+                <source src="assets/demo_robot_1.mp4" type="video/mp4" />
+                您的浏览器不支持 video 标签。请下载观看：assets/demo_robot_1.mp4
+              </video>
+              <figcaption>
+                <strong>Demo 1:</strong> <span class="muted">TODO: 一句话描述（任务/场景/成功条件/亮点）</span>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="media-card">
+            <figure>
+              <video controls preload="metadata" poster="assets/poster_demo2.jpg">
+                <source src="assets/demo_robot_2.mp4" type="video/mp4" />
+                您的浏览器不支持 video 标签。请下载观看：assets/demo_robot_2.mp4
+              </video>
+              <figcaption>
+                <strong>Demo 2:</strong> <span class="muted">TODO: 一句话描述（任务/场景/失败恢复/鲁棒性等）</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="small-note muted">
+          建议每个实机视频 10–30 秒，帧率/码率适中，避免过大导致加载慢。
+        </p>
+      </section>
+
+      <!-- 5. 三张图片：展示寻找的三个物体 -->
+      <section id="targets">
+        <h2>Targets</h2>
+        <div class="grid grid-3">
+          <div class="media-card">
+            <figure>
+              <img src="assets/target_1.jpg" alt="Target object 1" loading="lazy">
+              <figcaption><strong>Object A:</strong> <span class="muted">TODO: 物体名称/类别</span></figcaption>
+            </figure>
+          </div>
+          <div class="media-card">
+            <figure>
+              <img src="assets/target_2.jpg" alt="Target object 2" loading="lazy">
+              <figcaption><strong>Object B:</strong> <span class="muted">TODO: 物体名称/类别</span></figcaption>
+            </figure>
+          </div>
+          <div class="media-card">
+            <figure>
+              <img src="assets/target_3.jpg" alt="Target object 3" loading="lazy">
+              <figcaption><strong>Object C:</strong> <span class="muted">TODO: 物体名称/类别</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. 一张图片：展示实机寻找过程 -->
+      <section id="pipeline">
+        <h2>Real-World Search Process</h2>
+        <div class="media-card">
+          <figure>
+            <img src="assets/real_world_process.jpg" alt="Real-world searching process visualization" loading="lazy">
+            <figcaption>
+              <strong>Process visualization:</strong>
+              <span class="muted">TODO: 简述图中要点（传感器输入、规划/控制、关键模块、可视化符号含义）</span>
+            </figcaption>
+          </figure>
+        </div>
+        <p class="small-note muted">
+          若该图包含多子图，建议在图中标注 (a)(b)(c) 并在此处对应解释，贴近论文写法。
+        </p>
+      </section>
+
+      <!-- 可选：引用与致谢（学术项目页常见） -->
+      <section id="citation">
+        <h2>Citation</h2>
+        <div class="media-inner">
+<pre style="margin:0; padding:12px; border:1px solid var(--border); border-radius:12px; overflow:auto; background:rgba(249,250,251,.7); font-family:var(--mono); font-size:12.5px;">
+@inproceedings{TODO_key,
+  title     = {TODO: Title},
+  author    = {TODO: Authors},
+  booktitle = {TODO: Venue},
+  year      = {TODO: Year}
+}
+</pre>
+          <p class="small-note muted" style="margin-bottom:0;">
+            若使用了第三方素材/数据/基线实现，建议在主页同步列出许可与来源。
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footline">
+      <div>© <span id="year"></span> TODO: 你的团队/机构</div>
+      <div class="muted">Last updated: <span id="lastUpdated"></span></div>
+    </div>
+  </footer>
+
+  <script>
+    // 自动填充年份与更新时间（本地文件也可用）
+    const now = new Date();
+    document.getElementById('year').textContent = now.getFullYear();
+    document.getElementById('lastUpdated').textContent =
+      now.toISOString().slice(0,10);
+  </script>
 </body>
 </html>
